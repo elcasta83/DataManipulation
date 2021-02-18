@@ -1,0 +1,53 @@
+code,postal_code,name,phone_code,iso2,Autonomía
+VI,1,Álava,945,ES,Euskadi
+AB,2,Albacete,967,ES,Castilla La Mancha
+A,3,Alicante,950,ES,Comunitat Valenciana
+AL,4,Almería,920,ES,Andalucía
+AV,5,Avila,924,ES,Castilla y León
+BA,6,Badajoz,924,ES,Extremadura
+PM,7,Illes Balears,971,ES,Illes Balears
+B,8,Barcelona,93,ES,Catalunya
+BU,9,Burgos,947,ES,Castilla y León
+CC,10,Caceres,927,ES,Extremadura
+CA,11,Cádiz,956,ES,Andalucía
+CS,12,Castellón,964,ES,Comunitat Valenciana
+CR,13,Ciudad Real,926,ES,Castilla La Mancha
+CO,14,Córdoba,957,ES,Andalucía
+C,15,La Coruña,981,ES,Galicia
+CU,16,Cuenca,969,ES,Castilla La Mancha
+GI,17,Girona,972,ES,Catalunya
+GR,18,Granada,958,ES,Andalucía
+GU,19,Guadalajara,949,ES,Castilla La Mancha
+SS,20,Gipuzkoa,943,ES,Euskadi
+H,21,Huelva,959,ES,Andalucía
+HU,22,Huesca,974,ES,Aragón
+J,23,Jaen,953,ES,Andalucía
+LE,24,León,987,ES,Castilla y León
+L,25,Lleida,973,ES,Catalunya
+LO,26,La Rioja,941,ES,La Rioja
+LU,27,Lugo,982,ES,Galicia
+M,28,Madrid,91,ES,Madrid
+MA,29,Málaga,95,ES,Andalucía
+MU,30,Murcia,968,ES,Murcia
+NA,31,Navarra,948,ES,Navarra
+OR,32,Ourense,988,ES,Galicia
+O,33,Asturias,98,ES,Asturias
+P,34,Palencia,979,ES,Castilla y León
+GC,35,Las Palmas,928,ES,Islas Canarias
+PO,36,Pontevedra,986,ES,Galicia
+SA,37,Salamanca,923,ES,Castilla y León
+TF,38,Sta. Cruz de Tenerife,922,ES,Islas Canarias
+S,39,Cantabria,942,ES,Cantabria
+SG,40,Segovia,921,ES,Castilla y León
+SE,41,Sevilla,95,ES,Andalucía
+SO,42,Soria,975,ES,Castilla y León
+T,43,Tarragona,977,ES,Catalunya
+TE,44,Teruel,978,ES,Aragón
+TO,45,Toledo,925,ES,Castilla La Mancha
+V,46,Valencia,96,ES,Comunitat Valenciana
+VA,47,Valladolid,983,ES,Castilla y León
+BI,48,Vizcaya,94,ES,Euskadi
+ZA,49,Zamora,980,ES,Castilla y León
+Z,50,Zaragoza,976,ES,Aragón
+CE,51,Ceuta,956,ES,Ceuta
+ML,52,Melilla,95,ES,Melilla
