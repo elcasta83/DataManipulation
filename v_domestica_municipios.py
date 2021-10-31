@@ -16,32 +16,37 @@ vic_mun_=vic_mun[['Provincia', 'VICTIMA','Total Denuncias']]
 provi_mal=['AlmerÃ\xada','CÃ¡diz','CÃ³rdoba','MÃ¡laga','LeÃ³n','CastellÃ³n','La CoruÃ±a','Ã\x81lava','GuipÃºzcoa']
 provi_bien=['Almería','Cádiz','Córdoba','Málaga','León','Castellón','La Coruña','Álava','Guipúzcoa']
 vic_mun_['Provincia']=vic_mun_['Provincia'].replace(provi_mal,provi_bien)
+
 #cargamos nuevos datos sobre población de mujeres por provincias
 filepob='2852bsc.csv'
 pob_muj=pd.read_csv(filepob)
 provi_mal2=['Almer�a','C�diz','C�rdoba','M�laga','Le�n','Castell�n','La Coru�a','�lava','Gipuzkoa']
 pob_muj['Provincias.1']=pob_muj['Provincias.1'].replace(provi_mal2,provi_bien)
-#Unimos los dos dataframes
+
+#Unimos los dos dataframes relacionando el la población de mujeres por cada provincia
 vic_mun_=vic_mun_.merge(pob_muj,left_on='Provincia',right_on='Provincias.1')
+
 #Nos quedamos con las columnas que necesitamos
 vic_mun_=vic_mun_[['Provincia', 'VICTIMA','Total Denuncias','Total']]
-#vic_mun_['Indice']=(vic_mun_['Total Denuncias']/vic_mun_['Total'])*100000
+
+#Calculamos el índice por cada cien mil habitantes
 vic_mun_['Indice']=(vic_mun_['Total Denuncias']*100000)/vic_mun_['Total']
-print(vic_mun_)
+#print(vic_mun_)
+
 #definimos categorías tipo de víctimas
-cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  < Edad', 'Vï¿½ctima-Mujer-Extranjera >  Edad', 'Vï¿½ctima-Mujer-Extranjera < Edad']
-#Creamos el sumatorio por provincias y tipo de Victima y mostramos una muestra
-vic_prov_2015=vic_mun_.groupby(by=['Provincia','VICTIMA']).sum()
-print(vic_prov_2015[0:50])
+cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Extranjera <  Edad', 'Vï¿½ctima-Mujer-Extranjera > Edad']
+
 #Creamos dos dataframes para posteriormente filtrar por tipo de victima y provincia
 vic=pd.DataFrame()
 provi=pd.DataFrame()
+
 #Realizamos copia para no machacar datos
 vic_mun__=vic_mun_.copy()
+
 #Creamos boolean DF del DF principal para luego filtrar por tipo de victima y por Provincia
 for i, cat in enumerate(cat_vic):
 	vic[i]=vic_mun__['VICTIMA']==cat
-
+print(vic[2])
 for l, prov in enumerate(vic_mun__['Provincia'].unique()):
 	provi[l]=vic_mun__['Provincia']==prov
 #Creamos 4 DataFrame, uno por cada tipo de víctima. Almacenaremos la suma total por provincia.
@@ -62,13 +67,12 @@ for l, prov in enumerate(provi):
 	vic_pro_ext_men[l]=vic_mun__[np.logical_and(provi[l],vic[3])].sum()
 vic_pro_ext_men=vic_pro_ext_men.T
 
-
 #Creamos las provicias para mostrarlas en el plot
 prov=vic_mun__['Provincia'].unique()
-#print(prov)
+
 #visualizamos en una gráfica el total de denuncias por provincia
 vic_num_total=vic_mun__[vic_mun__['VICTIMA']=='TOTAL MUJERES VICTIMAS DE VIOLENCIA DOMESTICA']
-print(vic_num_total.groupby(by='Provincia')['Indice'].sum())
+#print(vic_num_total.groupby(by='Provincia')['Indice'].sum())
 vic_num_total.groupby(by='Provincia')['Indice'].sum().plot(kind='bar')
 #vic_num_total.plot(kind='bar')
 #visualizamos en una gráfica por provincias anidando el tipo de víctima
