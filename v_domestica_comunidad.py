@@ -35,15 +35,16 @@ vic_mun_=vic_mun_.merge(autonomia,left_on='Provincia',right_on='name')
 #Nos quedamos con las columnas que necesitamos
 vic_mun_=vic_mun_[['Autonomía', 'VICTIMA','Total Denuncias','Total']]
 vic_mun_['Indice']=(vic_mun_['Total Denuncias']*100000)/vic_mun_['Total']
-
+print((vic_mun_.head()))
 #definimos categorías tipo de víctimas
-cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Extranjera <  Edad', 'Vï¿½ctima-Mujer-Extranjera > Edad']
+cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  < Edad', 'Vï¿½ctima-Mujer-Extranjera > Edad', 'Vï¿½ctima-Mujer-Extranjera <  Edad']
 
 #Creamos dos dataframes para posteriormente filtrar por tipo de victima y provincia
 vic=pd.DataFrame()
 autonom=pd.DataFrame()
 #Realizamos copia para no machacar datos
 vic_mun__=vic_mun_.copy()
+
 #Creamos boolean DF del DF principal para luego filtrar por tipo de victima y por Provincia
 for i, cat in enumerate(cat_vic):
 	vic[i]=vic_mun__['VICTIMA']==cat
@@ -72,7 +73,8 @@ vic_pro_ext_men=vic_pro_ext_men.T
 
 #Creamos las provicias para mostrarlas en el plot
 autonomias=vic_mun__['Autonomía'].unique()
-#print(prov)
+
+print(autonomias)
 #visualizamos en una gráfica
 fig,ax=plt.subplots()
 ax.bar(autonomias, vic_pro_esp_may['Indice'], label='Española Mayor Edad')
