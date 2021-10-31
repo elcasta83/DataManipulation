@@ -31,7 +31,6 @@ vic_mun_=vic_mun_[['Provincia', 'VICTIMA','Total Denuncias','Total']]
 
 #Calculamos el índice por cada cien mil habitantes
 vic_mun_['Indice']=(vic_mun_['Total Denuncias']*100000)/vic_mun_['Total']
-#print(vic_mun_)
 
 #definimos categorías tipo de víctimas
 cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Extranjera <  Edad', 'Vï¿½ctima-Mujer-Extranjera > Edad']
@@ -49,6 +48,7 @@ for i, cat in enumerate(cat_vic):
 print(vic[2])
 for l, prov in enumerate(vic_mun__['Provincia'].unique()):
 	provi[l]=vic_mun__['Provincia']==prov
+
 #Creamos 4 DataFrame, uno por cada tipo de víctima. Almacenaremos la suma total por provincia.
 vic_pro_esp_may=pd.DataFrame()
 vic_pro_esp_men=pd.DataFrame()
@@ -74,7 +74,7 @@ prov=vic_mun__['Provincia'].unique()
 vic_num_total=vic_mun__[vic_mun__['VICTIMA']=='TOTAL MUJERES VICTIMAS DE VIOLENCIA DOMESTICA']
 #print(vic_num_total.groupby(by='Provincia')['Indice'].sum())
 vic_num_total.groupby(by='Provincia')['Indice'].sum().plot(kind='bar')
-#vic_num_total.plot(kind='bar')
+
 #visualizamos en una gráfica por provincias anidando el tipo de víctima
 fig,ax=plt.subplots()
 ax.bar(prov, vic_pro_esp_may['Indice'], label='Española Mayor Edad')

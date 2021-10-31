@@ -11,10 +11,12 @@ print(vic_mun.head())
 
 #Nos quedamos con las 3 columnas que nos interesan: Provincia, VICTIMA, Total Denuncias
 vic_mun_=vic_mun[['Provincia', 'VICTIMA','Total Denuncias']]
+
 #Estandarizamos los nombres de las provincias para su correcta lectura
 provi_mal=['AlmerÃ\xada','CÃ¡diz','CÃ³rdoba','MÃ¡laga','LeÃ³n','CastellÃ³n','La CoruÃ±a','Ã\x81lava','GuipÃºzcoa']
 provi_bien=['Almería','Cádiz','Córdoba','Málaga','León','Castellón','La Coruña','Álava','Guipúzcoa']
-vic_mun_['Provincia']=vic_mun_['Provincia'].replace(provi_mal,provi_bien)
+#vic_mun_['Provincia']=vic_mun_['Provincia'].replace(provi_mal,provi_bien)
+
 #cargamos nuevos datos sobre población de mujeres por provincias
 filepob='2852bsc.csv'
 pob_muj=pd.read_csv(filepob)
@@ -22,21 +24,21 @@ provi_mal2=['Almer�a','C�diz','C�rdoba','M�laga','Le�n','Castell�n',
 pob_muj['Provincias.1']=pob_muj['Provincias.1'].replace(provi_mal2,provi_bien)
 #Unimos los dos dataframes
 vic_mun_=vic_mun_.merge(pob_muj,left_on='Provincia',right_on='Provincias.1')
+
 #Cargamos otro dataframe apra saber a qué comunidad autonóma pertenece cada provincia
 auton='provincias.csv'
 autonomia=pd.read_csv(auton)
+
 #unimos los dataframes
 vic_mun_=vic_mun_.merge(autonomia,left_on='Provincia',right_on='name')
-#print(vic_mun_)
+
 #Nos quedamos con las columnas que necesitamos
 vic_mun_=vic_mun_[['Autonomía', 'VICTIMA','Total Denuncias','Total']]
 vic_mun_['Indice']=(vic_mun_['Total Denuncias']*100000)/vic_mun_['Total']
-print(vic_mun_)
+
 #definimos categorías tipo de víctimas
-cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  < Edad', 'Vï¿½ctima-Mujer-Extranjera >  Edad', 'Vï¿½ctima-Mujer-Extranjera < Edad']
-#Creamos el sumatorio por provincias y tipo de Victima y mostramos una muestra
-vic_auto_2015=vic_mun_.groupby(by=['Autonomía','VICTIMA']).sum()
-print(vic_auto_2015[0:50])
+cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Extranjera <  Edad', 'Vï¿½ctima-Mujer-Extranjera > Edad']
+
 #Creamos dos dataframes para posteriormente filtrar por tipo de victima y provincia
 vic=pd.DataFrame()
 autonom=pd.DataFrame()
