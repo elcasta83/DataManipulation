@@ -35,31 +35,24 @@ vic_mun_['Indice'] = (vic_mun_['Total Denuncias'] * 100000) / vic_mun_['Total']
 print((vic_mun_.head()))
 # definimos categorías tipo de víctimas
 cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  < Edad', 'Vï¿½ctima-Mujer-Extranjera > Edad', 'Vï¿½ctima-Mujer-Extranjera <  Edad']
-print(cat_vic)
+
 # Creamos dos dataframes para posteriormente filtrar por tipo de victima y provincia
 vic = pd.DataFrame()
 provi = pd.DataFrame()
 
-# Realizamos copia para no machacar datos
+# Realizamos copia para no machacar datos y ordenamos por ordena alfabetico por provincias
 vic_mun__ = vic_mun_.copy()
-i = 0
-cat = 0
+vic_mun__=vic_mun__.sort_values('Provincia')
+
 # Creamos boolean DF del DF principal para luego filtrar por tipo de victima y por Provincia
 for i, cat in enumerate(cat_vic):
     vic[i] = vic_mun__['VICTIMA'] == cat
-    print(cat)
-    print(vic[i])
+
 for l, prov in enumerate(vic_mun__['Provincia'].unique()):
     provi[l] = vic_mun__['Provincia'] == prov
 
 # visualizamos en una gráfica el total de denuncias por provincia
 vic_num_total = vic_mun__[vic_mun__['VICTIMA'] == 'TOTAL MUJERES VICTIMAS DE VIOLENCIA DOMESTICA']
-print("vic_num_total")
-print(vic_num_total.head())
-print("El total por provincias")
-print(vic_num_total.groupby(by='Provincia')['Indice'].sum())
-vic_num_total_=vic_num_total.groupby(by='Provincia')['Indice'].sum()
-print(vic_num_total_)
 
 # Creamos las provicias para mostrarlas en el plot
 prov = vic_mun__['Provincia'].unique()
