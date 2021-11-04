@@ -95,7 +95,7 @@ plt.show()
 
 
 ########################
-"""
+
 
 # definimos categorías tipo de víctimas
 cat_vic=['Vï¿½ctima-Mujer-Espaï¿½ola  > Edad', 'Vï¿½ctima-Mujer-Espaï¿½ola  < Edad', 'Vï¿½ctima-Mujer-Extranjera > Edad', 'Vï¿½ctima-Mujer-Extranjera <  Edad']
